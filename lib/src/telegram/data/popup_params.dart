@@ -1,4 +1,5 @@
 import 'package:js/js.dart';
+import 'package:telegram_web_app/src/telegram/models/internal/popup_button_internal.dart';
 import 'package:telegram_web_app/src/telegram/models/popup_button.dart';
 
 @JS()
@@ -10,13 +11,16 @@ class PopupParams {
     List<PopupButtonInternal>? buttons,
   });
 
-  /// Optional. The text to be displayed in the popup title, 0-64 characters.
-  external String get title;
+  /// The text to be displayed in the popup title, 0-64 characters.
+  @JS("title")
+  external String? get title;
 
   /// The message to be displayed in the body of the popup, 1-256 characters.
+  @JS("message")
   external String get message;
 
-  /// Optional. List of buttons to be displayed in the popup, 1-3 buttons.
+  /// List of buttons to be displayed in the popup, 1-3 buttons.
   /// Set to [{“type”:“close”}] by default.
+  @JS("buttons")
   external List<PopupButton>? get buttons;
 }

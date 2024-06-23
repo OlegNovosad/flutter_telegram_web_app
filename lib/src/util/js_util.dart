@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_web_libraries_in_flutter
+
 import 'dart:js' as js;
 import 'dart:js';
 
@@ -27,13 +29,15 @@ abstract class JsUtil {
   static dynamic convertToDart(value) {
     // Value types.
     if (value == null) return null;
-    if (value is bool || value is num || value is DateTime || value is String) return value;
+    if (value is bool || value is num || value is DateTime || value is String)
+      return value;
 
     // JsArray
     if (value is Iterable) return value.map(convertToDart).toList();
 
     // JsObject.
-    return Map.fromIterable(_getKeysOfObject(value), value: (key) => convertToDart(value[key]));
+    return Map.fromIterable(_getKeysOfObject(value),
+        value: (key) => convertToDart(value[key]));
   }
 
   static List<String> _getKeysOfObject(JsObject object) =>

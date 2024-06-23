@@ -21,7 +21,8 @@ class ListButton extends StatelessWidget {
             children: [
               Text(
                 text,
-                style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
+                style: const TextStyle(
+                    fontSize: 16.0, fontWeight: FontWeight.w500),
               ),
               const Spacer(),
               const Icon(Icons.chevron_right)

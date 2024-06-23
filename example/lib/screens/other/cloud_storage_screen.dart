@@ -145,14 +145,16 @@ class _CloudStorageScreenState extends State<CloudStorageScreen> {
 
             /// **************** Get All Items method ***************
             ElevatedButton(
-                onPressed: () => cloudStorage.getKeys(onGetKeysForGetItemsCallback),
+                onPressed: () =>
+                    cloudStorage.getKeys(onGetKeysForGetItemsCallback),
                 child: const Text('Get All Items')),
             const SizedBox(height: 24),
             const Divider(height: 12),
 
             /// **************** Remove All Items method ***************
             ElevatedButton(
-                onPressed: () => cloudStorage.getKeys(onGetKeysForRemoveItemsCallback),
+                onPressed: () =>
+                    cloudStorage.getKeys(onGetKeysForRemoveItemsCallback),
                 child: const Text('Remove All Items')),
             const SizedBox(height: 16),
           ],

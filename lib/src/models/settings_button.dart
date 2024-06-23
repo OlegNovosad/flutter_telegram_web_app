@@ -6,19 +6,19 @@ class SettingsButton {
   static SettingsButton get instance => _instance ??= SettingsButton._();
 
   /// Shows whether the button is visible. Set to false by default.
-  bool get isVisible => tg.SettingsButton.isVisible;
+  bool get isVisible => tg.settingsButton.isVisible;
 
   /// A method that sets the button press event handler.
   void onClick(void Function() callback) =>
-      tg.SettingsButton.onClick(tg.JsDynamicCallback(callback));
+      tg.settingsButton.onClick(tg.JsDynamicCallback(callback));
 
   /// A method that removes the button press event handler.
   void offClick(void Function() callback) =>
-      tg.SettingsButton.offClick(tg.JsDynamicCallback(callback));
+      tg.settingsButton.offClick(tg.JsDynamicCallback(callback));
 
   /// A method to make the button active and visible.
-  Future show() => tg.SettingsButton.show();
+  Future show() => tg.settingsButton.show();
 
   /// A method to hide the button.
-  Future hide() => tg.SettingsButton.hide();
+  Future hide() => tg.settingsButton.hide();
 }

@@ -4,13 +4,15 @@ import 'package:telegram_web_app/telegram_web_app.dart';
 
 abstract class TelegramThemeUtil {
   static ThemeData? getTheme(TelegramWebApp telegram) {
-    ThemeData theme =
-        telegram.colorScheme == TelegramColorScheme.dark ? ThemeData.dark() : ThemeData.light();
+    ThemeData theme = telegram.colorScheme == TelegramColorScheme.dark
+        ? ThemeData.dark()
+        : ThemeData.light();
 
     return theme.copyWith(
       primaryColor: telegram.themeParams.headerBgColor,
       scaffoldBackgroundColor: telegram.themeParams.sectionBgColor,
-      progressIndicatorTheme: ProgressIndicatorThemeData(color: telegram.themeParams.buttonColor),
+      progressIndicatorTheme:
+          ProgressIndicatorThemeData(color: telegram.themeParams.buttonColor),
       textSelectionTheme: TextSelectionThemeData(
         cursorColor: telegram.themeParams.accentTextColor,
         selectionHandleColor: telegram.themeParams.accentTextColor,
@@ -18,10 +20,10 @@ abstract class TelegramThemeUtil {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: telegram.themeParams.sectionBgColor,
-          textStyle: TextStyle(
-            color: telegram.themeParams.buttonTextColor,
-          ),
+          backgroundColor: telegram.themeParams.buttonColor,
+          foregroundColor: telegram.themeParams.buttonTextColor,
+          textStyle: TextStyle(color: telegram.themeParams.buttonTextColor),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
       ),
       segmentedButtonTheme: theme.segmentedButtonTheme.copyWith(
@@ -42,7 +44,8 @@ abstract class TelegramThemeUtil {
           backgroundColor: WidgetStateProperty.resolveWith<Color>(
             (Set<WidgetState> states) {
               if (states.contains(WidgetState.selected)) {
-                return telegram.themeParams.buttonColor?.withAlpha(80) ?? Colors.blue;
+                return telegram.themeParams.buttonColor?.withAlpha(80) ??
+                    Colors.blue;
               }
               return Colors.transparent;
             },
@@ -76,14 +79,16 @@ abstract class TelegramThemeUtil {
           backgroundColor: WidgetStateProperty.resolveWith<Color>(
             (Set<WidgetState> states) {
               if (states.contains(WidgetState.selected)) {
-                return telegram.themeParams.buttonColor?.withAlpha(80) ?? Colors.blue;
+                return telegram.themeParams.buttonColor?.withAlpha(80) ??
+                    Colors.blue;
               }
               return Colors.transparent;
             },
           ),
         ),
       ),
-      iconTheme: theme.iconTheme.copyWith(color: telegram.themeParams.textColor),
+      iconTheme:
+          theme.iconTheme.copyWith(color: telegram.themeParams.textColor),
       textTheme: theme.textTheme.apply(
         bodyColor: telegram.themeParams.textColor,
         displayColor: telegram.themeParams.subtitleTextColor,
@@ -102,13 +107,16 @@ abstract class TelegramThemeUtil {
         ),
       ),
       radioTheme: RadioThemeData(
-        fillColor: WidgetStateProperty.all(telegram.themeParams.accentTextColor),
-        overlayColor: WidgetStateProperty.all(telegram.themeParams.accentTextColor?.withAlpha(20)),
+        fillColor:
+            WidgetStateProperty.all(telegram.themeParams.accentTextColor),
+        overlayColor: WidgetStateProperty.all(
+            telegram.themeParams.accentTextColor?.withAlpha(20)),
       ),
       appBarTheme: theme.appBarTheme.copyWith(
         foregroundColor: telegram.themeParams.sectionHeaderTextColor,
         backgroundColor: telegram.themeParams.headerBgColor,
-        iconTheme: theme.appBarTheme.iconTheme?.copyWith(color: telegram.themeParams.textColor),
+        iconTheme: theme.appBarTheme.iconTheme
+            ?.copyWith(color: telegram.themeParams.textColor),
       ),
     );
   }

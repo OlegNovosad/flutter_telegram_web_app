@@ -36,11 +36,13 @@ class ThemeParamsWidget extends StatelessWidget {
           const SizedBox(height: 8),
           ColorWidget('section_bg_color', themeParams.sectionBgColor),
           const SizedBox(height: 8),
-          ColorWidget('section_header_text_color', themeParams.sectionHeaderTextColor),
+          ColorWidget(
+              'section_header_text_color', themeParams.sectionHeaderTextColor),
           const SizedBox(height: 8),
           ColorWidget('subtitle_text_color', themeParams.subtitleTextColor),
           const SizedBox(height: 8),
-          ColorWidget('destructive_text_color', themeParams.destructiveTextColor),
+          ColorWidget(
+              'destructive_text_color', themeParams.destructiveTextColor),
           const SizedBox(height: 8),
         ],
       ),

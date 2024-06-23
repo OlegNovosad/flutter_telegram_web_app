@@ -25,7 +25,8 @@ class _HapticFeedbackScreenState extends State<HapticFeedbackScreen> {
               Wrap(
                 children: HapticFeedbackImpact.values
                     .map((impact) => ElevatedButton(
-                          onPressed: () => hapticFeedback.impactOccurred(impact),
+                          onPressed: () =>
+                              hapticFeedback.impactOccurred(impact),
                           child: Text(impact.name),
                         ))
                     .toList(),
@@ -37,7 +38,8 @@ class _HapticFeedbackScreenState extends State<HapticFeedbackScreen> {
               Wrap(
                 children: HapticFeedbackNotificationType.values
                     .map((notification) => ElevatedButton(
-                          onPressed: () => hapticFeedback.notificationOccurred(notification),
+                          onPressed: () =>
+                              hapticFeedback.notificationOccurred(notification),
                           child: Text(notification.name),
                         ))
                     .toList(),

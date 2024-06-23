@@ -37,7 +37,8 @@ class _BackButtonScreenState extends State<BackButtonScreen> {
         child: Column(
           children: [
             const SizedBox(height: 12),
-            InfoExpandableTile('isVisible', backButton.isVisible.toString(), expanded: true),
+            InfoExpandableTile('isVisible', backButton.isVisible.toString(),
+                expanded: true),
             const SizedBox(height: 12),
             // Show/Hide button
             Row(

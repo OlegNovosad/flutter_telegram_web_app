@@ -83,6 +83,7 @@ class TelegramWebAppFake extends TelegramWebApp {
   Future<void> switchInlineQuery(String query, [ChatType? chatType]) async {}
   @override
   Future<void> openLink(String url, {bool tryInstantView = true}) async {
+    // ignore: avoid_print
     print("Mocked open link for $url, tryInstantView: $tryInstantView");
   }
 
@@ -90,7 +91,8 @@ class TelegramWebAppFake extends TelegramWebApp {
   Future<void> openTelegramLink(String url) async {}
 
   @override
-  Future<void> openInvoice(String url, [Function(dynamic)? onInvoiceStatus]) async {}
+  Future<void> openInvoice(String url,
+      [Function(dynamic)? onInvoiceStatus]) async {}
   @override
   Future<void> showPopup({
     String? title,
@@ -103,19 +105,23 @@ class TelegramWebAppFake extends TelegramWebApp {
   Future<void> showAlert(String message, [Function()? callback]) async {}
 
   @override
-  Future<void> showConfirm(String message, [void Function(bool isOkPressed)? callback]) async {}
+  Future<void> showConfirm(String message,
+      [void Function(bool isOkPressed)? callback]) async {}
 
   @override
-  Future<void> showScanQrPopup(String? infoTitle, [bool Function(String result)? callback]) async {}
+  Future<void> showScanQrPopup(String? infoTitle,
+      [bool Function(String result)? callback]) async {}
 
   @override
   Future<void> closeScanQrPopup() async {}
 
   @override
-  Future<void> readTextFromClipboard([void Function(String clipboardText)? onRead]) async {}
+  Future<void> readTextFromClipboard(
+      [void Function(String clipboardText)? onRead]) async {}
 
   @override
-  Future<void> requestWriteAccess({required Function(bool granted) onResult}) async {}
+  Future<void> requestWriteAccess(
+      {required Function(bool granted) onResult}) async {}
 
   @override
   Future<void> requestContact([void Function(bool granted)? onResult]) async {}

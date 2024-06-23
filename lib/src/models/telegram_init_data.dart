@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'telegram_user.dart';
+
 class TelegramInitData {
   final TelegramUser user;
   final int chatInstance;
@@ -29,11 +31,15 @@ class TelegramInitData {
     Map<String, dynamic> userData = jsonDecode(Uri.decodeFull(userJson));
     TelegramUser user = TelegramUser(
       id: userData['id'],
-      firstname: userData['first_name'],
-      lastname: userData['last_name'],
+      firstName: userData['first_name'],
+      lastName: userData['last_name'],
       username: userData['username'],
       languageCode: userData['language_code'],
       allowsWriteToPm: userData['allows_write_to_pm'],
+      photoUrl: userData['photo_url'],
+      isBot: userData['is_bot'],
+      isPremium: userData['is_premium'],
+      addedToAttachmentMenu: userData['added_to_attachment_menu'],
     );
 
     List<String> keyValuePairs = rawData.substring(userEndIndex + 1).split('&');
@@ -60,11 +66,16 @@ class TelegramInitData {
   factory TelegramInitData.fake() {
     TelegramUser user = TelegramUser(
       id: 23424242,
-      firstname: 'Joh',
-      lastname: 'Kerry',
+      firstName: 'Joh',
+      lastName: 'Kerry',
       username: 'flutter_telegram',
       languageCode: 'en',
       allowsWriteToPm: true,
+      photoUrl:
+          'https://fastly.picsum.photos/id/684/200/200.jpg?hmac=Al0pymCRQr_mB6OlD9xW3UsgmSKDgnNPq2JLj3_CfUY',
+      isBot: false,
+      isPremium: false,
+      addedToAttachmentMenu: false,
     );
 
     return TelegramInitData(
@@ -72,7 +83,8 @@ class TelegramInitData {
         chatInstance: 23423423424243,
         chatType: 'private',
         authDate: 1711523754,
-        hash: '990cb639550445f1d6ac16cac04f793a570904fa89104fa9e854d51d6bd489a6',
+        hash:
+            '990cb639550445f1d6ac16cac04f793a570904fa89104fa9e854d51d6bd489a6',
         raw: 'This is fake row data');
   }
 
@@ -86,35 +98,5 @@ class TelegramInitData {
         'hash: $hash,'
         'raw: $raw'
         '}';
-  }
-}
-
-class TelegramUser {
-  final int id;
-  final String firstname;
-  final String lastname;
-  final String username;
-  final String languageCode;
-  final bool allowsWriteToPm;
-
-  TelegramUser({
-    required this.id,
-    required this.firstname,
-    required this.lastname,
-    required this.username,
-    required this.languageCode,
-    required this.allowsWriteToPm,
-  });
-
-  @override
-  String toString() {
-    return "TelegramUser{"
-        "id:$id, "
-        "firstname: $firstname, "
-        "lastname: $lastname, "
-        "username: $username, "
-        "languageCode: $languageCode, "
-        "allowsWriteToPm: $allowsWriteToPm"
-        "}";
   }
 }

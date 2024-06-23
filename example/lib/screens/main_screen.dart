@@ -63,8 +63,10 @@ class _MainScreenState extends State<MainScreen> {
           InfoExpandableTile('Color Scheme', telegram.colorScheme.name),
           ThemeParamsWidget(telegram.themeParams),
           InfoExpandableTile('isExpanded', telegram.isExpanded.toString()),
-          InfoExpandableTile('viewportHeight', telegram.viewportHeight.toString()),
-          InfoExpandableTile('viewportStableHeight', telegram.viewportStableHeight.toString()),
+          InfoExpandableTile(
+              'viewportHeight', telegram.viewportHeight.toString()),
+          InfoExpandableTile(
+              'viewportStableHeight', telegram.viewportStableHeight.toString()),
           OneColorExpandableTile('headerColor', telegram.headerColor),
           OneColorExpandableTile('backgroundColor', telegram.backgroundColor),
           InfoExpandableTileWithWidget(
@@ -105,39 +107,40 @@ class _MainScreenState extends State<MainScreen> {
           ListButton(
             'BackButton',
             onPress: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => const BackButtonScreen()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const BackButtonScreen()));
             },
           ),
           ListButton(
             'MainButton',
             onPress: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => const MainButtonScreen()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const MainButtonScreen()));
             },
           ),
           ListButton(
             'SettingsButton',
             onPress: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => const SettingsButtonScreen()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const SettingsButtonScreen()));
             },
           ),
           ListButton(
             'HapticFeedback',
             onPress: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => const HapticFeedbackScreen()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const HapticFeedbackScreen()));
             },
           ),
           ListButton(
             'CloudStorage',
             onPress: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => const CloudStorageScreen()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const CloudStorageScreen()));
             },
           ),
-          InfoExpandableTile('isVersionAtLeast(6.1)', isDefinedVersion.toString()),
+          InfoExpandableTile(
+              'isVersionAtLeast(6.1)', isDefinedVersion.toString()),
           ListButton(
             'setHeaderColor(color)',
             onPress: () async {
@@ -220,7 +223,8 @@ class _MainScreenState extends State<MainScreen> {
               try {
                 telegram.showConfirm(
                   'Sample Confirm',
-                  (okPressed) => 'Confirm closed. Ok pressed: $okPressed'.showSnackbar(context),
+                  (okPressed) => 'Confirm closed. Ok pressed: $okPressed'
+                      .showSnackbar(context),
                 );
               } catch (ex) {
                 'error happened showing alert: $ex'.showSnackbar(context);
@@ -258,7 +262,8 @@ class _MainScreenState extends State<MainScreen> {
             'Request write access',
             onPress: () async {
               telegram.requestWriteAccess(
-                onResult: (result) => 'Write access granted: $result'.showSnackbar(context),
+                onResult: (result) =>
+                    'Write access granted: $result'.showSnackbar(context),
               );
             },
           ),

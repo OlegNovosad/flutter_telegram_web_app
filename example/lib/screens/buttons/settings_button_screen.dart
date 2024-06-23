@@ -37,7 +37,8 @@ class _SettingsButtonScreenState extends State<SettingsButtonScreen> {
         child: Column(
           children: [
             const SizedBox(height: 12),
-            InfoExpandableTile('isVisible', settingsButton.isVisible.toString(), expanded: true),
+            InfoExpandableTile('isVisible', settingsButton.isVisible.toString(),
+                expanded: true),
             const SizedBox(height: 12),
             // Show/Hide button
             Row(

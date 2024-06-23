@@ -9,13 +9,15 @@ abstract class TelegramWebApp {
   /// returns true if opened inside Telegram web
   bool get isSupported;
 
-  /// A string with raw data transferred to the Mini App, convenient for validating data.
-  /// WARNING: Validate data from this field before using it on the bot's server.
+  /// A string with raw data transferred to the Mini App, convenient for [validating data](https://core.telegram.org/bots/webapps#validating-data-received-via-the-mini-app).
+  ///
+  /// __WARNING:__ [Validate data](https://core.telegram.org/bots/webapps#validating-data-received-via-the-mini-app) from this field before using it on the bot's server.
   TelegramInitData get initData;
 
   /// An object with input data transferred to the Mini App.
-  /// WARNING: Data from this field should not be trusted. You should only use data from
-  /// initData on the bot's server and only after it has been validated.
+  ///
+  /// __WARNING:__ Data from this field should not be trusted.
+  /// You should only use data from _initData_ on the bot's server and only after it has been [validated](https://core.telegram.org/bots/webapps#validating-data-received-via-the-mini-app).
   WebAppInitData? get initDataUnsafe;
 
   /// The version of the Bot API available in the user's Telegram app.
@@ -24,54 +26,45 @@ abstract class TelegramWebApp {
   /// The name of the platform of the user's Telegram app.
   String get platform;
 
-  /// The color scheme currently used in the Telegram app. Either “light” or “dark”.
+  /// The color scheme currently used in the Telegram app. Either `light` or `dark`.
   TelegramColorScheme get colorScheme;
 
   /// An object containing the current theme settings
   /// used in the Telegram app.
   ThemeParams get themeParams;
 
-  /// True, if the Mini App is expanded to the maximum
-  /// available height. False, if the Mini App occupies
-  /// part of the screen and can be expanded to the full
-  /// height using the expand() method.
+  /// _True_, if the Mini App is expanded to the maximum available height.
+  /// _False_, if the Mini App occupies part of the screen and can be expanded to the full height using the [expand] method.
   bool get isExpanded;
 
   /// The current height of the visible area of the Mini App
   double? get viewportHeight;
 
-  /// The height of the visible area of the Mini App
-  /// in its last stable state
+  /// The height of the visible area of the Mini App in its last stable state
   double? get viewportStableHeight;
 
+  /// Current header color
   Color? get headerColor;
 
+  /// Current background color
   Color? get backgroundColor;
 
-  /// True, if the confirmation dialog is enabled
-  /// while the user is trying to close the Mini App.
-  /// False, if the confirmation dialog is disabled.
+  /// _True_, if the confirmation dialog is enabled while the user is trying to close the Mini App.
+  /// _False_, if the confirmation dialog is disabled.
   bool get isClosingConfirmationEnabled;
 
-  /// You can use direct links to open a Mini App directly
-  /// in the current chat. If a non-empty startapp parameter
-  /// is included in the link, it will be passed to the Mini
+  /// You can use direct links to open a Mini App directly in the current chat.
+  /// If a non-empty startapp parameter is included in the link, it will be passed to the Mini
   /// App in the start_param field and in the below GET parameter
   String? get tgWebAppStartParam;
 
-  /// An object for controlling the back button
-  /// which can be displayed in the header of
-  /// the Mini App in the Telegram interface.
+  /// An object for controlling the back button which can be displayed in the header of the Mini App in the Telegram interface.
   BackButton get backButton;
 
-  /// An object for controlling the main button,
-  /// which is displayed at the bottom of the
-  /// Mini App in the Telegram interface.
+  /// An object for controlling the main button, which is displayed at the bottom of the Mini App in the Telegram interface.
   MainButton get mainButton;
 
-  /// An object for controlling the Settings item
-  /// in the context menu of the Mini App in the
-  /// Telegram interface.
+  /// An object for controlling the Settings item in the context menu of the Mini App in the Telegram interface.
   SettingsButton get settingButton;
 
   /// An object for controlling haptic feedback.
@@ -80,26 +73,26 @@ abstract class TelegramWebApp {
   /// An object for controlling cloud storage.
   CloudStorage get cloudStorage;
 
-  /// Returns true if the user's app supports a
-  /// version of the Bot API that is equal to or
+  /// Returns true if the user's app supports a [version] of the Bot API that is equal to or
   /// higher than the version passed as the parameter.
   Future<bool> isVersionAtLeast(String version);
 
+  /// A method that sets the app header color
   Future<void> setHeaderColor(Color color);
 
+  /// A method that sets the app background color
   Future<void> setBackgroundColor(Color color);
 
-  /// A method that enables a confirmation dialog while
-  /// the user is trying to close the Mini App.
+  /// A method that enables a confirmation dialog while the user is trying to close the Mini App.
   Future<void> enableClosingConfirmation();
 
-  /// A method that disables the confirmation dialog while
-  /// the user is trying to close the Mini App.
+  /// A method that disables the confirmation dialog while the user is trying to close the Mini App.
   Future<void> disableClosingConfirmation();
 
   /// A method that sets the app event handler. Check the list of [available events](https://core.telegram.org/bots/webapps#events-available-for-mini-apps).
-  /// All events mapped to events of TelegramEvent
-  /// WARNING: call offEvent method to unregister callback
+  /// All events mapped to events of [TelegramEvent]
+  ///
+  /// __WARNING: call offEvent method to unregister callback__
   void onEvent(TelegramEvent event);
 
   /// A method that deletes a previously set event handler.
@@ -160,14 +153,16 @@ abstract class TelegramWebApp {
   /// If an optional callback parameter was passed, the callback function will be called when
   /// the popup is closed and the first argument will be a boolean indicating whether the user
   /// pressed the 'OK' button.
-  Future<void> showConfirm(String message, [void Function(bool isOkPressed)? callback]);
+  Future<void> showConfirm(String message,
+      [void Function(bool isOkPressed)? callback]);
 
   /// A method that shows a native popup for scanning a QR code described by the params argument
   /// of the type [ScanQrPopupParams]. The Mini App will receive the event [qrTextReceived] every time
   /// the scanner catches a code with text data. If an optional callback parameter was passed,
   /// the callback function will be called and the text from the QR code will be passed as the
   /// [first argument]. Returning true inside this [callback] function causes the popup to be closed.
-  Future<void> showScanQrPopup(String? infoTitle, [bool Function(String result)? callback]);
+  Future<void> showScanQrPopup(String? infoTitle,
+      [bool Function(String result)? callback]);
 
   /// A method that closes the native popup for scanning a QR code opened with the showScanQrPopup method.
   /// Run it if you received valid data in the event qrTextReceived.
@@ -179,7 +174,8 @@ abstract class TelegramWebApp {
   /// Note: this method can be called only for Mini Apps launched from the attachment menu and only in
   /// response to a user interaction with the Mini App interface (e.g. a click inside the Mini App
   /// or on the main button).
-  Future<void> readTextFromClipboard([void Function(String clipboardText)? onRead]);
+  Future<void> readTextFromClipboard(
+      [void Function(String clipboardText)? onRead]);
 
   /// A method that shows a native popup requesting permission for the bot to send messages to the user.
   /// If an optional [callback] parameter was passed, the callback function will be called when the popup
