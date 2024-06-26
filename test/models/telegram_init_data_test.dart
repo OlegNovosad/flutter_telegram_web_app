@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:telegram_web_app/src/models/telegram_init_data.dart';
+import 'package:telegram_web_app/src/models/telegram_user.dart';
 
 void main() {
   test('given raw with utf8 character ğ -> parses correctly to TelegramInitData', () {
@@ -9,8 +10,11 @@ void main() {
     TelegramInitData expected = TelegramInitData(
       user: TelegramUser(
         id: 123456789,
-        firstname: 'Khamidjon ğ',
-        lastname: 'Khamidov',
+        isBot: null,
+        isPremium: null,
+        photoUrl: null,
+        firstName: 'Khamidjon ğ',
+        lastName: 'Khamidov',
         username: 'work_smard',
         languageCode: 'en',
         allowsWriteToPm: true,
@@ -34,8 +38,11 @@ void main() {
     TelegramInitData expected = TelegramInitData(
       user: TelegramUser(
         id: 123456789,
-        firstname: 'Khamidjon',
-        lastname: 'Khamidov',
+        isBot: null,
+        isPremium: null,
+        photoUrl: null,
+        firstName: 'Khamidjon',
+        lastName: 'Khamidov',
         username: 'work_smard',
         languageCode: 'en',
         allowsWriteToPm: true,
@@ -59,8 +66,11 @@ void main() {
     TelegramInitData expected = TelegramInitData(
       user: TelegramUser(
         id: 123456789,
-        firstname: 'Khamidjon',
-        lastname: null,
+        isBot: null,
+        isPremium: null,
+        photoUrl: null,
+        firstName: 'Khamidjon',
+        lastName: null,
         username: null,
         languageCode: 'en',
         allowsWriteToPm: true,

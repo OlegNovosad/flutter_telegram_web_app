@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:telegram_web_app/src/models/telegram_user.dart';
 import 'package:telegram_web_app/src/util/data_parser.dart';
 
 class TelegramInitData {
@@ -29,8 +30,11 @@ class TelegramInitData {
 
     TelegramUser user = TelegramUser(
       id: userData['id'],
-      firstname: userData['first_name'],
-      lastname:
+      isBot: userData['is_bot'],
+      isPremium: userData['is_premium'],
+      photoUrl: userData['photo_url'],
+      firstName: userData['first_name'],
+      lastName:
           ((userData['last_name'] as String?)?.isNotEmpty ?? false) ? userData['last_name'] : null,
       username: userData['username'],
       languageCode: userData['language_code'],
@@ -60,8 +64,11 @@ class TelegramInitData {
   factory TelegramInitData.fake() {
     TelegramUser user = TelegramUser(
       id: 23424242,
-      firstname: 'Joh',
-      lastname: 'Kerry',
+      isBot: false,
+      isPremium: false,
+      photoUrl: 'https://fastly.picsum.photos/id/1067/200/200.jpg?hmac=ngB6HBZNUvsDrt27Y2-MuiSoudFqdwH6bSd8CP8zsy8',
+      firstName: 'Joh',
+      lastName: 'Kerry',
       username: 'flutter_telegram',
       languageCode: 'en',
       allowsWriteToPm: true,
@@ -112,55 +119,4 @@ class TelegramInitData {
         'hash: $hash, '
         'raw: $raw}';
   }
-}
-
-class TelegramUser {
-  final int id;
-  final String? firstname;
-  final String? lastname;
-  final String? username;
-  final String? languageCode;
-  final bool? allowsWriteToPm;
-
-  TelegramUser({
-    required this.id,
-    required this.firstname,
-    required this.lastname,
-    required this.username,
-    required this.languageCode,
-    required this.allowsWriteToPm,
-  });
-
-  @override
-  String toString() {
-    return "TelegramUser{"
-        "id:$id, "
-        "firstname: $firstname, "
-        "lastname: $lastname, "
-        "username: $username, "
-        "languageCode: $languageCode, "
-        "allowsWriteToPm: $allowsWriteToPm"
-        "}";
-  }
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is TelegramUser &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          firstname == other.firstname &&
-          lastname == other.lastname &&
-          username == other.username &&
-          languageCode == other.languageCode &&
-          allowsWriteToPm == other.allowsWriteToPm;
-
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      firstname.hashCode ^
-      lastname.hashCode ^
-      username.hashCode ^
-      languageCode.hashCode ^
-      allowsWriteToPm.hashCode;
 }
